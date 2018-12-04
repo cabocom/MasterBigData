@@ -1,0 +1,35 @@
+Enunciado:
+--------------------------------------------------------------------------------
+El banco ha creado un sistema para predecir los gastos de los clientes (estimado) y
+quiere comprobar los errores que comete en base a lo gastado realmente por el cliente
+(gastado). Entonces se parte de un dataset que contenga entradas con la siguiente
+forma:
+a. “persona estimado:dinero_estimado” ejemplo: “Alicia estimado: 100”
+indica que el sistema estima que Alicia va hacer un gasto de 100
+b. “persona gastado:dinero_gastado” ejemplo: “Alicia estimado: 110”
+indica que finalmente Alicia hizo un gasto de 110
+Crea un programa llamado errorEnEstimacionPorCompra que indique para cada compra
+el error que se obtuvo en la estimación. En el anterior ejemplo se estimó que Alicia iba
+hacer una compra de 100 y finalmente la hizo de 110, entonces el error cometido es 10.
+
+Notas:
+--------------------------------------------------------------------------------
+- En el mapper se obtienen las cantidades estimadas y gastadas para emitirlas junto al nombre de la persona
+  aplicando la lógica de cantidades estimados positivos mientras que cantidades gastadas son negativas
+- No es necesario programar un combiner específico, podría utilizarse el mismo reducer.
+- En el reducer se realiza la suma de todas las cantidades pasadas para cada persona emitiendose solamente
+  el valor absoluto de dicha suma
+
+Comandos:
+--------------------------------------------------------------------------------
+Probar mapper
+cat entrada | ./mapper.py
+
+Probar mapper y reducer
+cat entrada | ./mapper.py | sort -k1.1 | ./reducer.py
+
+Comando con hadoop
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.5.jar \
+        -file ./mapper.py -mapper ./mapper.py \
+        -file ./reducer.py -reducer ./reducer.py \
+        -input entrada -output salida
