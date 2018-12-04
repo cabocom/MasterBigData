@@ -1,0 +1,8 @@
+Probar mapper
+cat entrada | ./mapper.py
+
+Probar mapper y reducer
+cat entrada | ./mapper.py | sort -k1.1 | ./reducer.py
+
+Comando con hadoop
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.5.jar -file ./mapper.py -mapper ./mapper.py -file ./reducer.py -reducer ./reducer.py -input entrada -output salida
