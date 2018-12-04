@@ -1,0 +1,10 @@
+# Fichero docker-compose para Ubuntu
+version: '2'
+services:
+    hadoop:
+        container_name: hadoop
+        hostname: hadoop
+        image: hadoop:ubuntu18.04
+        volumes:
+            - "/home/javier/MyCode/MasterBigData:/code"
+          
