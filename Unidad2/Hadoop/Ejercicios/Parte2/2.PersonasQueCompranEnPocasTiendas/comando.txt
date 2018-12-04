@@ -1,0 +1,30 @@
+Enunciado:
+--------------------------------------------------------------------------------
+Dado un dataset que contenga entrada con la forma “persona tienda”.
+Crea un programa llamado personasQueCompranEnPocasTiendas que indique todas las
+personas que compraron en 3 o menos tiendas. Se valorará positivamente la
+optimización del programa, por ejemplo a través de la funcionalidad Combiner.
+
+Notas:
+--------------------------------------------------------------------------------
+- En el mapper se emite una línea por cada persona y tienda
+- En el combiner se eliminan los registros duplicados y se emite solo un par persona/tienda
+- En el reducer se calcula el número de tiendas recibidas para cada persona y se publica solo las que tengan menos de 3
+
+Comandos:
+--------------------------------------------------------------------------------
+Probar mapper
+cat entrada | ./mapper.py
+
+Probar mapper y combiner
+cat entrada | ./mapper.py | sort -k1.1 | ./combiner.py
+
+Probar mapper, combiner y reducer
+cat entrada | ./mapper.py | sort -k1.1 | ./combiner.py | sort -k1.1 | ./reducer.py
+
+Comando con hadoop
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.5.jar \
+        -file ./mapper.py -mapper ./mapper.py \
+        -file ./combiner.py -combiner ./combiner.py \
+        -file ./reducer.py -reducer ./reducer.py \
+        -input entrada -output salida
