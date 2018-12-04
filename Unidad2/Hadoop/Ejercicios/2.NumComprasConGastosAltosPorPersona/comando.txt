@@ -1,3 +1,18 @@
+Enunciado:
+--------------------------------------------------------------------------------
+Dado un dataset que contenga entrada con la forma “persona dinero_gastado”. Crea
+un programa llamado numComprasConGastosAltosPorPersona que por cada persona
+indique en cuántas compras pagó más de 3000 euros. Se valorará positivamente la
+optimización del programa, por ejemplo a través de la funcionalidad Combiner.
+
+Notas:
+--------------------------------------------------------------------------------
+En este ejercicio no se puede implementar el combiner ya que es muy probable
+que si una persona no ha gastado más de 3000 € entonces no será mostrado en el 
+listado final
+
+Comandos:
+--------------------------------------------------------------------------------
 Probar mapper
 cat entrada | ./mapper.py
 
@@ -11,6 +26,4 @@ hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.5.jar \
         -input entrada -output salida
 
 
-En este ejercicio no se puede implementar el combiner ya que es muy probable
-que si una persona no ha gastado más de 3000 € entonces no será mostrado en el 
-listado final
+

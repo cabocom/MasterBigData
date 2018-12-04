@@ -1,17 +1,19 @@
 #!/usr/bin/python
+# coding=utf-8
 
 import sys
 
 '''
-Reducer para DineroGastadoPorPersona
+Reducer para MinimoGastoPorPersona
 Realizado por Javier Galvez
 
 Este Reducer tambien puede ejectuar tareas de combiner
-ya que la suma de un todo es igual que la suma de las partes
+ya que el mínimos de un todo es igual que el mínimo de
+los mínimos de las partes
 '''
 
 subproblema = None
-acumulado = 0
+minimo = float(999999)
 
 for claveValor in sys.stdin:
     persona, cantidad = claveValor.split("\t", 1)
@@ -22,21 +24,17 @@ for claveValor in sys.stdin:
     if subproblema == None:
         subproblema = persona
 
-    # Si estamos en el mismo subproblema, realizamos la lógica solicitada
+    # Si estamos en el mismo subproblema, calculamos el mínimo
     if subproblema == persona:
-        if(cantidad >= 3000):
-            acumulado = acumulado + 1
+        if(cantidad < minimo):
+            minimo = cantidad
     else:
         # La persona ha cambiado por lo que hemos finalizado el subproblema
-        print("%s\t%s" % (subproblema, acumulado) )
+        print("%s\t%s" % (subproblema, minimo) )
 
         # Pasamos al siguiente subproblema
         subproblema = persona
-        if(cantidad >= 3000):
-            acumulado = 1
-        else:
-            acumulado = 0
-
+        minimo = cantidad
 
 # el anterior bucle no emite el ultimo resultado
-print("%s\t%s" % (subproblema, acumulado) )
+print("%s\t%s" % (subproblema, minimo) )

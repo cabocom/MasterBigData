@@ -1,14 +1,14 @@
 Enunciado:
 --------------------------------------------------------------------------------
-Dado un dataset que contenga entradas con la forma “persona dinero_gastado”. Crea
-un programa llamado dineroGastadoPorPersona que por cada persona indique cuánto
-dinero gastó en total. Se valorará positivamente la optimización del programa, por
-ejemplo a través de la funcionalidad Combiner.
+Dado un dataset que contenga entrada con la forma “persona dinero_gastado”. Crea
+un programa llamado minimoGastoPorPersona que por cada persona indique el mínimo
+gasto que hizo. Se valorará positivamente la optimización del programa, por ejemplo a
+través de la funcionalidad Combiner.
 
 Notas:
 --------------------------------------------------------------------------------
-En este ejercicio sí se puede implementar el combiner ya que la suma de un todo
-es igual a la suma de sus partes
+En este ejercicio sí se puede implementar el combiner ya que el mínimo de un todo
+es igual al mínimo de los minimos de sus partes
 
 Comandos:
 --------------------------------------------------------------------------------
