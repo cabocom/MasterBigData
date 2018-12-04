@@ -8,23 +8,22 @@ funcionalidad Combiner.
 
 Notas:
 --------------------------------------------------------------------------------
-En este ejercicio vamos a utilizar los índices dobles en los key de manera que estos
-indices estén compuestos por la persona y la cantidad gastada de manera que:
- - en la salida del mapper el valor es siempre un 1 
- - en la salida del combiner el valor es la cantidad de veces que se repite el índice (como wordcount)
- - en la salida del reducer es el número máximo
+- En el mapper se emiten tantos registros como gastos hayan realizado las personas
+  siguiendo la estrategia del wordcount
+- En combiner se suman los gastos realizados para cada persona
+- En reducer se calcula el gasto que más se repite
 
 Comandos:
 --------------------------------------------------------------------------------
 Probar mapper
 cat entrada | ./mapper.py
 
-Probar mapper y reducer
+Probar mapper, combiner y reducer
 cat entrada | ./mapper.py | sort -k1.1 | ./combiner.py | sort -k1.1 | ./reducer.py
 
 Comando con hadoop
 hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-2.8.5.jar \
         -file ./mapper.py -mapper ./mapper.py \
-        -file ./reducer.py -combiner ./reducer.py \
-        -reducer ./reducer.py \
+        -file ./combiner.py -combiner ./combiner.py \
+        -file ./reducer.py -reducer ./reducer.py \
         -input entrada -output salida

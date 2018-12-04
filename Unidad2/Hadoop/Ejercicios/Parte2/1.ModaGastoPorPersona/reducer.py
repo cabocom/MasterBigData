@@ -11,27 +11,32 @@ ya que la suma de un todo es igual que la suma de las partes
 '''
 
 subproblema = None
-maximo = 0
+maxRepeticiones = 0
+maxCantidad = 0
 
 for claveValor in sys.stdin:
-    persona, cantidad = claveValor.split("\t", 1)
+    conjunto, repeticiones = claveValor.split("\t", 1)
+    persona, cantidad = conjunto.split("-", 1);
 
-    cantidad = float(cantidad)
+    cantidad = int(cantidad)
 
-    #El primer subproblema es la primera palabra recibida,
+    #El primer subproblema es la primera persona recibida,
     if subproblema == None:
         subproblema = persona
 
-    #Si es el mismo anyo calculamos la temperatura maxima
+    #Si es la misma persona estudiamos el mayor valor repetido
     if subproblema == persona:
-        suma = suma + cantidad
+        if(repeticiones > maxRepeticiones):
+            maxRepeticiones = repeticiones
+            maxCantidad = cantidad
     else:
-        # La palabra ha cambiado por lo que hemos finalizado el subproblema
-        print("%s\t%s" % (subproblema, suma) )
+        # La persona ha cambiado por lo que hemos finalizado el subproblema
+        print("%s\t%s" % (subproblema, maxCantidad) )
 
         # Pasamos al siguiente subproblema
         subproblema = persona
-        suma = cantidad
+        maxRepeticiones = repeticiones
+        maxCantidad = cantidad
 
 # el anterior bucle no emite el ultimo resultado
-print("%s\t%s" % (subproblema, suma) )
+print("%s\t%s" % (subproblema, maxCantidad) )
