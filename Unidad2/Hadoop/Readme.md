@@ -1,4 +1,4 @@
-#Ejercicios Hadoop
+# Ejercicios Hadoop
 
 Los ejemplos y ejercicios han sido desarrollados y testeados con la imagen de docker **hadoop** que se encuentra en este mismo proyecto.
 

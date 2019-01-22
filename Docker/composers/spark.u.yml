@@ -1,0 +1,10 @@
+# Fichero docker-compose para Ubuntu
+version: '2'
+services:
+    spark:
+        container_name: spark
+        hostname: spark
+        image: spark:ubuntu18.04
+        volumes:
+            - "/home/javier/MyCode/MasterBigData:/code"
+          
